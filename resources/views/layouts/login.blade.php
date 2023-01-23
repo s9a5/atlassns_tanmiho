@@ -29,11 +29,10 @@
                 <h1><a href="/top"><img src="images/atlas.png"></a></h1>
                 <p> {{Auth::user()->username}}さん<img src="images/icon1.png"></p>
                 <!--アコーディオン実装-->
-                <button type="button" class=" menu-btn">
-                    <span class="inn">
+                <button type="button" class="menu-btn">
+                    <span class="dli-chevron-down">
                     </span>
                 </button>
-                <p id="is-open" class="is-open"></p>
                 <nav class="menu">
                     <ul>
                         <li><a href="/top">ホーム</a></li>
@@ -43,9 +42,8 @@
                 </nav>
             </div>
         </div>
-
-
     </header>
+
     <div id="row">
         <div id="container">
             @yield('content')
