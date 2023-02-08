@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="ページの内容を表す文章" />
     <title></title>
+    <link rel="stylesheet" href="/profile">
     <link rel="stylesheet" href="{{ asset('css/reset.css') }} ">
     <link rel="stylesheet" href="{{ asset('css/style.css') }} ">
     <!--スマホ,タブレット対応-->
@@ -35,9 +36,11 @@
                 </button>
                 <nav class="menu">
                     <ul>
+                    <div class="right box">
                         <li><a href="/top">ホーム</a></li>
                         <li><a href="/profile">プロフィール</a></li>
                         <li><a href="/logout">ログアウト</a></li>
+                    </div>
                     </ul>
                 </nav>
             </div>

@@ -2,7 +2,9 @@
 
 html {}
 
-body {}
+body {
+
+}
 
 /* header */
 header {
@@ -11,15 +13,15 @@ header {
 
 .wrap {
 
-    display: -ms-flexbox;
-    display: -webkit-box;
+    display: inline-block;
     display: flex;
+    display: flex;
+    font-size: 1.5em;
+    flex-wrap: wrap;
     justify-content: space-between;
+    margin-right: -12000px;
 }
 
-.wrap div {
-    margin-left: 7px;
-}
 
 
 /* アコーディオン記述 */
@@ -28,9 +30,9 @@ header {
     width: 60px;
     height: 60px;
     position: absolute;
+    pointer-events: auto;
     top: 1px;
     right: 1px;
-    outline: initial;
 }
 
 
@@ -50,24 +52,34 @@ header {
 
 .menu-btn.is-open {
     top: 10%;
-    transform: translate(-50%, -60%) rotate(-45deg);
+    transform: translate(-60%, -65%) rotate(-60sdeg); /*与えられた要素を回転、拡大縮小、傾斜、移動することできます*/
 }
 
+
 .menu {
-    position: absolute;
-    top: 60px;
-    width:10%;
-    background-color: #fff;
-    opacity: 0;
-    transition: .3s ease-in-out;
-    pointer-events: none;
-    transform: translateY(-30px);
+    position: relative; /* 要素の位置を決める際に使用するCSSプロパティ */
+    top: 100px; /* CSS のプロパティで、位置指定要素の垂直位置の決定に関与します */
+    display: inline-block;/* ブロック要素やインラインブロック要素  */
+    width: 90%;/*指定したHTML要素の横幅を調節できるプロパティ */
+    font-size: 1.2em;
+    background-color: #fff;/*要素内の文字などの 背景の色 を指定します */
+    opacity: 0;/*要素の不透明度を設定します */
+    transition: .3s ease-out;/*ホバー時やクリック時の動きをを調整できるプロパティがtransitionプロパティ */
+    pointer-events: auto ;/*要素のクリックイベントをキャンセルするために使用されます */
+    transform: translateY(0px);/*与えられた要素を回転、拡大縮小、傾斜、移動することできます*/
 }
+
+
+
 
 .menu.is-open {
     opacity: 1;
     transform: translateY(0);
     margin-right: 0;
+}
+
+.wrap div {
+    margin-right: 90px;
 }
 
 
