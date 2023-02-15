@@ -17,14 +17,18 @@
 // Route::get('/home', 'HomeController@index')->name('home');
 
 //Auth::routes();
-
-
+//投稿フォーム//
+Route::prefix('admin/items')->name('admin.items.')->group(function() {
+       Route::get('index', 'ItemsController@index')->name('index');
+    });
 //ログアウト中のページ
 Route::get('/login', 'Auth\LoginController@login')->name('login');
-Route::post('/login', 'Auth\LoginController@logout');
+Route::Post('/login', 'Auth\LoginController@login');
 
 Route::get('/register', 'Auth\RegisterController@register');
 Route::post('/register', 'Auth\RegisterController@register');
+
+Route::get('/logout', 'LoginController@logout');
 
 Route::get('/added', 'Auth\RegisterController@added');
 Route::post('/added', 'Auth\RegisterController@added');
@@ -40,4 +44,6 @@ Route::get('/search', 'UsersController@search');
 Route::get('/follow-list', 'FollowsController@followList');
 Route::get('/follower-list', 'FollowsController@followerList');
 
-Route::get('/logout', 'PostsController@logout');
+Route::get('post/{id}/update-form', 'PostsController@updateForm');
+
+Route::get('/logout', 'LoginController@logout');
