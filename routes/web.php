@@ -23,7 +23,7 @@ Route::prefix('admin/items')->name('admin.items.')->group(function() {
     });
 //ログアウト中のページ
 Route::get('/login', 'Auth\LoginController@login')->name('login');
-Route::Post('/login', 'Auth\LoginController@login');
+Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/register', 'Auth\RegisterController@register');
 Route::post('/register', 'Auth\RegisterController@register');

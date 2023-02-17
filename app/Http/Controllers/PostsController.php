@@ -18,7 +18,7 @@ class PostsController extends Controller
     {
         $post = $request->input('newPost');
         Post::create(['post' => $post]);
-        return redirect('index');
+        return view('posts.login.blade.php');
     }
     
     public function updateForm($id)

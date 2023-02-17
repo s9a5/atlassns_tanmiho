@@ -47,6 +47,20 @@
         </div>
     </header>
 
+    <!--投稿フォーム-->
+    <div class="container">
+        <h2 class="page-header"></h2>
+        {!! Form::open(['url' => 'post/create']) !!}
+        <div class="form-group">
+            {!! Form::input('text', 'newPost', null, ['required', 'class' => 'form-control', 'placeholder' => '投稿内容']) !!}
+        </div>
+        <button type="submit" class="btn btn-success pull-right">投稿</button>
+        {!! Form::close() !!}
+    </div>
+    <footer>
+        <small></small>
+    </footer>
+
     <div id="row">
         <div id="container">
             @yield('content')
@@ -72,6 +86,8 @@
     </footer>
     <script src="{{ asset('/js/app.js') }}"></script>
     <script src="{{ asset('/js/script.js') }}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 </body>
 
 </html>
