@@ -21,6 +21,21 @@ class PostsController extends Controller
         return view('posts.login.blade.php');
     }
     
+// 4.1 ログインユーザーのつぶやきを登録
+public function store(Request $request, Post $post)
+{
+    $user = auth()->user();
+    $data = $request->all();
+    $validator = Validator::make($data, [
+        'posts' => ['required', 'string', 'max:150']
+    ]);
+
+    $validator->validate();
+    $post->postStore($user->id, $data);
+
+    return redirect('top');
+}
+
     public function updateForm($id)
     {
         $post = Post::where('id', $id)->first();

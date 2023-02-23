@@ -10,4 +10,14 @@ class Post extends Model
     protected $fillable = [
         'post'
     ];
+
+    // 4.1 ログインユーザーのつぶやきを登録
+    public function postStore(Int $user_id, array $data)
+    {
+        $this->user_id = $user_id;
+        $this->posts = $data['posts'];
+        $this->save();
+
+        return;
+    }
 }

@@ -17,21 +17,26 @@
 // Route::get('/home', 'HomeController@index')->name('home');
 
 //Auth::routes();
-//投稿フォーム//
-Route::prefix('admin/items')->name('admin.items.')->group(function() {
-       Route::get('index', 'ItemsController@index')->name('index');
-    });
+
 //ログアウト中のページ
 Route::get('/login', 'Auth\LoginController@login')->name('login');
-Route::get('/logout', 'Auth\LoginController@logout');
+Route::post('/login', 'Auth\LoginController@login');
 
 Route::get('/register', 'Auth\RegisterController@register');
 Route::post('/register', 'Auth\RegisterController@register');
 
-Route::get('/logout', 'LoginController@logout');
+Route::get('/login', 'Auth\LoginController@login')->name('login');
+Route::get('/logout', 'Auth\LoginController@logout');
 
 Route::get('/added', 'Auth\RegisterController@added');
 Route::post('/added', 'Auth\RegisterController@added');
+
+//投稿フォーム//
+Route::prefix('admin/items')->name('admin.items.')->group(function() {
+    Route::get('index', 'ItemsController@index')->name('index');
+ });
+
+ Route::resource('top', 'PostsController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
 
 //ログイン中のページ
 //フォロー、フォロワー数表示//
@@ -46,4 +51,3 @@ Route::get('/follower-list', 'FollowsController@followerList');
 
 Route::get('post/{id}/update-form', 'PostsController@updateForm');
 
-Route::get('/logout', 'LoginController@logout');
