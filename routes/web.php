@@ -49,5 +49,8 @@ Route::get('/search', 'UsersController@search');
 Route::get('/follow-list', 'FollowsController@followList');
 Route::get('/follower-list', 'FollowsController@followerList');
 
+Route::get('/post/create', 'PostsController@create');
+Route::post('/post/create', 'PostsController@create');
+
 Route::get('post/{id}/update-form', 'PostsController@updateForm');
 

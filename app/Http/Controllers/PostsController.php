@@ -18,7 +18,7 @@ class PostsController extends Controller
     {
         $post = $request->input('newPost');
         Post::create(['post' => $post]);
-        return view('posts.login.blade.php');
+        return redirect('/top');
     }
     
 // 4.1 ログインユーザーのつぶやきを登録
@@ -33,7 +33,7 @@ public function store(Request $request, Post $post)
     $validator->validate();
     $post->postStore($user->id, $data);
 
-    return redirect('top');
+    return redirect('/top');
 }
 
     public function updateForm($id)
