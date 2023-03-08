@@ -14,6 +14,17 @@ class User extends Authenticatable
      *
      * @var array
      */
+    public static function bootUserable()
+    {
+        static::addGlobalScope('mine', function(Builder $builder) {
+            $builder->where('user_id', auth()->id());
+        });
+        
+        static::creating(function (Model $model) {
+            $model->user_id = auth()->id();
+        });
+    }
+
     protected $fillable = [
         'username', 'mail', 'password',
     ];
@@ -26,6 +37,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function posts()
+        {
+            return $this->hasMany('App\Post');
+        }
 
     //フォロー、フォロワー//
     public function follow($user_id)
