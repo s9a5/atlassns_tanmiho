@@ -15,5 +15,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UsersTableSeeder::class, // 呼び出すように追加
         ]);
+
+        // 現在認証しているユーザーを取得
+        $user = auth()->user();
+
+       // 現在認証しているユーザーのIDを取得
+        $id = auth()->id();
     }
 }

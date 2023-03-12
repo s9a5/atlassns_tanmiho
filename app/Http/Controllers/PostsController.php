@@ -4,55 +4,46 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+//下記の内容を追記する
+use Illuminate\Support\Facades\Auth;
+
 use App\Post;
 
 
 class PostsController extends Controller
 {
     //
+    /**
+     * @param Request $request
+     * @return Response
+     */
+
     
+     //投稿画面を表示させる処理
     public function index(){
         return view('posts.index');
     }
-    // ...
-    //投稿フォーム//
+
+    //つぶやきをデーターベースに登録するための処理
     public function create(Request $request)
     {
+        $id = Auth::id();//ログインユーザーのid情報
+        // dd($request);//でバック関数
         $post = $request->input('newPost');
-        Post::create(['post' => $post]);
+        // dd($post);
+        Post::create([
+            'user_id' => $id,//$postになってしまっているので、ログインユーザーの情報が入っている変数
+            'post' => $post,
+        ]);
         return redirect('/top');
     }
     
-// 4.1 ログインユーザーのつぶやきを登録
-public function store(Request $request, Post $post)
-{
-    $user = auth()->user();
-    $data = $request->all();
-    $validator = Validator::make($data, [
-        'posts' => ['required', 'string', 'max:150']
-    ]);
 
-    $validator->validate();
-    $post->postStore($user->id, $data);
-
-    return redirect('/top');
-}
-
+//参考の為に記述したコード
     public function updateForm($id)
     {
         $post = Post::where('id', $id)->first();
         return view('posts.updateForm', ['post'=>$post]);
-    }
-
-    public function update(Request $request)
-    {
-        // 1つ目の処理
-        $id = $request->input('id');
-        $up_post = $request->input('upPost');
-        // 2つ目の処理
-        Post::where('id', $id)->update(['post' => $up_post]);
-        // 3つ目の処理
-        return redirect('index');
     }
 
     public function delete($id)

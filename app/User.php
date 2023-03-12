@@ -14,6 +14,8 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+     // 4.1 ログインユーザーのつぶやきを登録
     public static function bootUserable()
     {
         static::addGlobalScope('mine', function(Builder $builder) {
@@ -24,6 +26,7 @@ class User extends Authenticatable
             $model->user_id = auth()->id();
         });
     }
+
 
     protected $fillable = [
         'username', 'mail', 'password',

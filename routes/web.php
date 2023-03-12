@@ -19,38 +19,46 @@
 //Auth::routes();
 
 //ログアウト中のページ
+//ログイン画面　ログイン画面を表示
 Route::get('/login', 'Auth\LoginController@login')->name('login');
+//ログイン処理
 Route::post('/login', 'Auth\LoginController@login');
 
+//新規登録画面
+//新規画面を表示させる
 Route::get('/register', 'Auth\RegisterController@register');
+//見えない処理をする　新規ユーザー登録
 Route::post('/register', 'Auth\RegisterController@register');
 
-Route::get('/login', 'Auth\LoginController@login')->name('login');
+//postのみ見えない処理は限らない　ログアウトの処理
 Route::get('/logout', 'Auth\LoginController@logout');
 
+//登録を完了した時の画面を表示させる
 Route::get('/added', 'Auth\RegisterController@added');
-Route::post('/added', 'Auth\RegisterController@added');
 
 //投稿フォーム//
-Route::prefix('admin/items')->name('admin.items.')->group(function() {
-    Route::get('index', 'ItemsController@index')->name('index');
- });
+// Route::prefix('admin/items')->name('admin.items.')->group(function() {
+//     Route::get('index', 'ItemsController@index')->name('index');
+//  });
 
- Route::resource('top', 'PostsController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
+//  Route::resource('top', 'PostsController', ['only' => ['index', 'create', 'store', 'show', 'edit', 'update', 'destroy']]);
 
 //ログイン中のページ
-//フォロー、フォロワー数表示//
+//投稿画面（トップ）を表示させる
 Route::get('/top', 'PostsController@index');
 
+//プロフィール画面を表示させる
 Route::get('/profile', 'UsersController@profile');
 
+//検索画面を表示させる
 Route::get('/search', 'UsersController@search');
 
+//フォローリスト画面を表示させる
 Route::get('/follow-list', 'FollowsController@followList');
+//フォロワーリスト画面を表示させる
 Route::get('/follower-list', 'FollowsController@followerList');
 
-Route::get('/post/create', 'PostsController@create');
+//つぶやきの登録を処理する
 Route::post('/post/create', 'PostsController@create');
 
-Route::get('post/{id}/update-form', 'PostsController@updateForm');
 

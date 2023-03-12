@@ -4,6 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+// 4.1 ログインユーザーのつぶやきを登録 user_id//
+class PostController extends Controller
+{
+    public function index()
+    {
+        $posts = Post::where('user_id', \Auth::user()->id)->get();
+ 
+        return view('posts.index', [
+          'title' => '投稿一覧',
+          'posts' => $posts,
+        ]);
+    }
+}
+
 class UsersController extends Controller
 {
     //
