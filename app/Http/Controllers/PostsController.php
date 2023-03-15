@@ -12,6 +12,19 @@ use App\Post;
 
 class PostsController extends Controller
 {
+//テストコード
+    public function hello()
+    {
+        echo 'hello world!<br>';
+        echo 'コントローラーを使ったルーティング成功です。';
+    }
+
+    //つぶやきをトップ画面に表示されるコード
+    public function index()
+    {
+        $list = Post::get();
+        return view('posts.index',['posts'=>$list]);
+    }
     //
     /**
      * @param Request $request
@@ -19,10 +32,6 @@ class PostsController extends Controller
      */
 
     
-     //投稿画面を表示させる処理
-    public function index(){
-        return view('posts.index');
-    }
 
     //つぶやきをデーターベースに登録するための処理
     public function create(Request $request)
@@ -39,16 +48,22 @@ class PostsController extends Controller
     }
     
 
-//参考の為に記述したコード
-    public function updateForm($id)
-    {
-        $post = Post::where('id', $id)->first();
-        return view('posts.updateForm', ['post'=>$post]);
-    }
-
+//つぶやきを更新するためのコード
+public function update(Request $request)
+{
+    // 1つ目の処理
+    $id = $request->input('id');
+    $up_post = $request->input('upPost');
+    // 2つ目の処理
+    Post::where('id', $id)->update(['post' => $up_post]);
+    // 3つ目の処理
+    return redirect('index');
+}
+//つぶやきを削除する為のコード
     public function delete($id)
     {
         Post::where('id', $id)->delete();
         return redirect('index');
     }
+    
 }

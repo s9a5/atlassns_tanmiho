@@ -4,18 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-// 4.1 ログインユーザーのつぶやきを登録 user_id//
+// 4.1 ログインユーザーのつぶやきを画面表示させる//
 class PostController extends Controller
 {
-    public function index()
-    {
-        $posts = Post::where('user_id', \Auth::user()->id)->get();
- 
-        return view('posts.index', [
-          'title' => '投稿一覧',
-          'posts' => $posts,
-        ]);
-    }
+  public function index()
+  {
+      $posts = Post::where('user_id', \Auth::user()->id)->get();
+
+      return view('posts.index', [
+        'post'=> $post,'user'=>$user
+      ]);
+  }
 }
 
 class UsersController extends Controller

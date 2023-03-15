@@ -10,8 +10,8 @@ use App\Post;
 class Post extends Model
 {
     //↓下記を追加してください
-    protected $fillable = [
-        'user_id', 'posts',
+    protected $fillable = [//登録・更新許可するカラムを指定
+        'user_id', 'post',
     ];
   
       public function Users()

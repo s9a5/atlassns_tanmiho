@@ -12,9 +12,11 @@
             
         </table>
 
+
+
         <!--投稿フォーム-->
 <div class="container">
-        <h2 class="page-header"></h2>
+        <h2 class="page-header">投稿一覧</h2>
         {!! Form::open(['url' => 'post/create']) !!}
         <div class="form-group">
             {!! Form::text('newPost', null, ['required', 'class' => 'form-control', 'placeholder' => '投稿内容']) !!}
@@ -25,4 +27,15 @@
     <footer>
         <small></small>
     </footer>
+
+    @foreach ($posts as $posts)
+       <tr>
+           <td>{{ $post->id }}</td>
+           <td>{{ $item->name }}</td>
+           <td>{{ $list->created_at }}</td>
+           <td><a class="btn btn-primary" href="/post/{{$list->id}}/update-form">更新</a></td>
+           ↓ ここを追加してください
+           <td><a class="btn btn-danger" href="/post/{{$list->id}}/delete">削除</a></td>
+       </tr>
+       @endforeach
 @endsection

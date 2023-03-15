@@ -61,4 +61,15 @@ Route::get('/follower-list', 'FollowsController@followerList');
 //つぶやきの登録を処理する
 Route::post('/post/create', 'PostsController@create');
 
+// //テストコード
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
+// //下記コードを記述しましょう。
+// Route::get('hello', function(){
+//     echo 'Hello World !';
+// });
+
+//テストコード
+Route::get('hello', 'PostsController@hello');
