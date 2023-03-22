@@ -61,6 +61,11 @@ Route::get('/follower-list', 'FollowsController@followerList');
 //つぶやきの登録を処理する
 Route::post('/post/create', 'PostsController@create');
 
+//つぶやきを更新の処理をする
+Route::get('post/{id}/update-form', 'PostsController@update');
+
+//つぶやきを消去の処理をする
+Route::get('/post/{id}/delete', 'PostsController@delete');
 // //テストコード
 // Route::get('/', function () {
 //     return view('welcome');
@@ -71,5 +76,5 @@ Route::post('/post/create', 'PostsController@create');
 //     echo 'Hello World !';
 // });
 
-//テストコード
-Route::get('hello', 'PostsController@hello');
+// //テストコード
+// Route::get('hello', 'PostsController@hello');

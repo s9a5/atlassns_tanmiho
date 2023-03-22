@@ -16,7 +16,6 @@
 
         <!--投稿フォーム-->
 <div class="container">
-        <h2 class="page-header">投稿一覧</h2>
         {!! Form::open(['url' => 'post/create']) !!}
         <div class="form-group">
             {!! Form::text('newPost', null, ['required', 'class' => 'form-control', 'placeholder' => '投稿内容']) !!}
@@ -24,18 +23,20 @@
         <button type="submit" class="btn btn-success pull-right">投稿</button>
         {!! Form::close() !!}
     </div>
+    <h2 class="page-header">投稿一覧</h2>
     <footer>
         <small></small>
     </footer>
 
-    @foreach ($posts as $posts)
+
+
+    @foreach ($posts as $post)
        <tr>
            <td>{{ $post->id }}</td>
-           <td>{{ $item->name }}</td>
-           <td>{{ $list->created_at }}</td>
-           <td><a class="btn btn-primary" href="/post/{{$list->id}}/update-form">更新</a></td>
-           ↓ ここを追加してください
-           <td><a class="btn btn-danger" href="/post/{{$list->id}}/delete">削除</a></td>
+           <td>{{ $post->post }}</td>
+           <td>{{ $post->created_at }}</td>
+           <td><a class="btn btn-primary" href="/post/{{$post->id}}/update-form">更新</a></td>
+           <td><a class="btn btn-danger" href="/post/{{$post->id}}/delete" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')">削除</a></td> 
        </tr>
        @endforeach
 @endsection
