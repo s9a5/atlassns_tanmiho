@@ -65,6 +65,7 @@ public function update(Request $request)
     // 3つ目の処理
     return redirect('/top');
 }
+
 //つぶやきを削除する為のコード
     public function delete($id)
     {
