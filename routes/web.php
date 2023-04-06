@@ -62,7 +62,7 @@ Route::get('/follower-list', 'FollowsController@followerList');
 Route::post('/post/create', 'PostsController@create');
 
 //つぶやきを更新の処理をする
-Route::get('post/{id}/update-form', 'PostsController@update');
+Route::get('/post/{id}/update', 'PostsController@update');
 
 //つぶやきを消去の処理をする
 Route::get('/post/{id}/delete', 'PostsController@delete');

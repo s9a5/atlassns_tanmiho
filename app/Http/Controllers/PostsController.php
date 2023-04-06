@@ -47,24 +47,31 @@ class PostsController extends Controller
         return redirect('/top');
     }
     
-//つぶやきを更新するためのコード
-
-public function updateForm($id)
-    {
-        $post = Post::where('id', $id)->first();
-        return view('posts.updateForm', ['post'=>$post]);
-    }
-
-public function update(Request $request)
+//投稿編集画面
+public function edit($id)
 {
-    // 1つ目の処理
-    $id = $request->input('id');
-    $up_post = $request->input('upPost');
-    // 2つ目の処理
-    Post::where('id', $id)->update(['post' => $up_post]);
-    // 3つ目の処理
-    return redirect('/top');
-}
+ $post = \DB::table('posts')
+         ->where('id', $request->id)
+         ->get();
+ return view('top', compact('post'));
+ }
+
+ //投稿更新
+ public function postsupdate(Request $request, Post $post)
+ {
+     $id = $request->input('id');
+     $up_post = $request->input('upPost');
+     $up_post->post = $request->post;
+     $up_post->fill($request->all())->save();
+
+     $post = \DB::table('posts')
+         ->where('id', $request->id)
+         ->update(
+             ['post' => $up_post]
+         );
+
+     return redirect('/top')->with('warning', '編集完了');
+ }
 
 //つぶやきを削除する為のコード
     public function delete($id)
