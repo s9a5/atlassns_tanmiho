@@ -60,9 +60,8 @@ public function edit($id)
  public function postsupdate(Request $request, Post $post)
  {
      $id = $request->input('id');
-     $up_post = $request->input('upPost');
-     $up_post->post = $request->post;
-     $up_post->fill($request->all())->save();
+     $up_post = $request->input('post');
+    
 
      $post = \DB::table('posts')
          ->where('id', $request->id)
