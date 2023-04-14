@@ -26,9 +26,6 @@
         {{ $user->name }}
     </a>
 
-@endsection
-
-<div>
- // 下記のようにページネーターを記述するとページネートで次ページに遷移しても、検索結果を保持する
-    {{ $institutions->appends(request()->input())->links() }}
-</div>
+   
+    
+@endforeach

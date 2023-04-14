@@ -55,7 +55,6 @@ class UserController extends Controller
         // ユーザー一覧をページネートで取得
         $users = User::paginate(20);
 
-　　     // 検索フォームで入力された値を取得する
         $search = $request->input('search');
 
         // クエリビルダ
@@ -76,7 +75,6 @@ class UserController extends Controller
                 $query->where('name', 'like', '%'.$value.'%');
             }
 
-　　　　// 上記で取得した$queryをページネートにし、変数$usersに代入
             $users = $query->paginate(20);
 
         }

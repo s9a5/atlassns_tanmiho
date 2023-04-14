@@ -53,6 +53,9 @@ Route::get('/profile', 'UsersController@profile');
 //検索画面を表示させる
 Route::get('/search', 'UsersController@search');
 
+//ユーザー一覧と検索画面
+Route::get('/users.index','UsersController@index');
+
 //フォローリスト画面を表示させる
 Route::get('/follow-list', 'FollowsController@followList');
 //フォロワーリスト画面を表示させる
