@@ -3,29 +3,31 @@
 @section('content')
 <p>検索</p>
 
-<form>
- <input type="url" name="sample">
- <button type="submit">検索</button>
-</form>
 
-
-<form method="GET" action="{{ route('users.index') }}">
+<form method="GET" action="{{ route('users.search') }}">
     <input type="search" placeholder="ユーザー名を入力" name="search" value="@if (isset($search)) {{ $search }} @endif">
     <div>
         <button type="submit">検索</button>
-        <button>
-            <a href="{{ route('users.index') }}" class="text-white">
-                クリア
-            </a>
-        </button>
     </div>
 </form>
 
-@foreach($users as $user)
-    <a href="{{ route('users.show', ['user_id' => $user->id]) }}">
-        {{ $user->name }}
-    </a>
+<!-- 検索ワードを表示 -->
+@if (!empty($keyword))
+<p>検索ワード:{{$keyword}}</p>
+@endif
 
-   
-    
+<!-- 保存されているユーザー一覧 -->
+<div class="container-list">
+
+<table class="table tablehover">
+@foreach($users as $user)
+<!-- 自分以外のユーザーを表示 -->
+@if (!($user->username == $users->username))
+<tr>
+    <td>(($users->username))</td>
+    <td><img src="{{ $users->images }}" alt="ユーザーアイコン"></td>
+</tr>
+@endif
 @endforeach
+
+@endsection

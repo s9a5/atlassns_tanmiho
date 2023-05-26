@@ -50,11 +50,14 @@ Route::get('/top', 'PostsController@index');
 //プロフィール画面を表示させる
 Route::get('/profile', 'UsersController@profile');
 
+
 //検索画面を表示させる
 Route::get('/search', 'UsersController@search');
 
 //ユーザー一覧と検索画面
-Route::get('/users.index','UsersController@index');
+Route::get('/','UsersController@search')->name('users.search');
+
+// Route::get('/users/show', 'UsersController@users.show');
 
 //フォローリスト画面を表示させる
 Route::get('/follow-list', 'FollowsController@followList');

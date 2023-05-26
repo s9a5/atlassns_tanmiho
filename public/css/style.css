@@ -147,3 +147,24 @@ li{
     transform: translate(-50%,-50%);
     width: 60%;
 }
+
+/* プロフィール編集項目の入力フォームを設置する */
+.form-group {
+    margin-bottom: 1rem;
+    border: 0;
+    text-align: left;
+  }
+  .form-group, .input{
+    display: grid;
+  }
+  
+  input.input, textarea{
+    text-align: left;
+    background-color: #e5e5e5;
+    border: 1px solid #7a7a7a;
+  }
+  
+  .form-update{
+    margin: 0 auto; /* 中央寄せ */
+    display: table;
+  }

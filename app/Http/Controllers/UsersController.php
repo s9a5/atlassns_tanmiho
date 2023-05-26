@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Models\User;
+use App\User;
 
 // 4.1 ログインユーザーのつぶやきを画面表示させる//
 class PostController extends Controller
@@ -25,15 +25,45 @@ class UsersController extends Controller
     public function profile(){
         return view('users.profile');
     }
-    public function search(){
-        return view('users.search');
-    }
 
+    //検索結果を表示させる
+    public function search(){
+      
+        // ユーザー一覧をページネートで取得
+        $users = User::paginate(20);
+      
+      // ビューにusersとsearchを変数として渡す
+      return view('users.search')
+          ->with([
+              'users' => $users,
+          ]);
+    }
+      //ユーザー検索の処理を実装する
+    public function getIndex(Request $rq)
+    {
+        //キーワード受け取り
+        $keyword = $rq->input('search');
+    
+        //クエリ生成
+        $query = \App\Student::query();
+    
+        //もしキーワードがあったら
+        if(!empty($search))
+        {
+            $query->orWhere('name','like','%'.$search.'%');
+        }
+    
+        // 全件取得 +ページネーション
+        $students = $query->orderBy('id','desc')->paginate(5);
+        return view('student.list')->with('students',$students)->with('search',$search);
+    }
+    
     /**
    * 登録フォーム
    *
    * @return \Illuminate\View\View
    */
+  
   public function create()
   {
     // まだ登録されているuserはないので、空っぽのUserインスタンスをViewに渡す
@@ -42,48 +72,4 @@ class UsersController extends Controller
   }
 }
 
-//ユーザー検索の結果一覧を表示
-class UserController extends Controller
-{
-
-    /**
-     * ユーザー一覧
-     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
-     */
-    public function search(Request $request)
-    {
-        // ユーザー一覧をページネートで取得
-        $users = User::paginate(20);
-
-        $search = $request->input('search');
-
-        // クエリビルダ
-        $query = User::query();
-
-       // もし検索フォームにキーワードが入力されたら
-        if ($search) {
-
-            // 全角スペースを半角に変換
-            $spaceConversion = mb_convert_kana($search, 's');
-
-            // 単語を半角スペースで区切り、配列にする（例："山田 翔" → ["山田", "翔"]）
-            $wordArraySearched = preg_split('/[\s,]+/', $spaceConversion, -1, PREG_SPLIT_NO_EMPTY);
-
-
-            // 単語をループで回し、ユーザーネームと部分一致するものがあれば、$queryとして保持される
-            foreach($wordArraySearched as $value) {
-                $query->where('name', 'like', '%'.$value.'%');
-            }
-
-            $users = $query->paginate(20);
-
-        }
-
-        // ビューにusersとsearchを変数として渡す
-        return view('users.index')
-            ->with([
-                'users' => $users,
-                'search' => $search,
-            ]);
-    }
-}
+// プロフィール編集項目の入力フォームを設置する
