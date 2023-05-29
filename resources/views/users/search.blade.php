@@ -16,10 +16,6 @@
 <p>検索ワード:{{$keyword}}</p>
 @endif
 
-<!-- 保存されているユーザー一覧 -->
-<div class="container-list">
-
-<table class="table tablehover">
 @foreach($users as $user)
 <!-- 自分以外のユーザーを表示 -->
 @if (!($user->username == $users->username))
