@@ -18,10 +18,10 @@
 
 @foreach($users as $user)
 <!-- 自分以外のユーザーを表示 -->
-@if (!($user->username == $users->username))
+@if (!($user->username == $user->username))
 <tr>
-    <td>(($users->username))</td>
-    <td><img src="{{ $users->images }}" alt="ユーザーアイコン"></td>
+    <td>(($user->username))</td>
+    <td><img src="{{ $user->images }}" alt="ユーザーアイコン"></td>
 </tr>
 @endif
 @endforeach
