@@ -3,7 +3,6 @@
 @section('content')
 <p>検索</p>
 
-
 <form method="GET" action="{{ route('users.search') }}">
     <input type="search" placeholder="ユーザー名を入力" name="search" value="@if (isset($search)) {{ $search }} @endif">
     <div>
@@ -12,8 +11,8 @@
 </form>
 
 <!-- 検索ワードを表示 -->
-@if (!empty($keyword))
-<p>検索ワード:{{$keyword}}</p>
+@if (!empty($searchWord))
+<p>検索ワード:{{$searchWord}}</p>
 @endif
 
 @foreach($users as $user)

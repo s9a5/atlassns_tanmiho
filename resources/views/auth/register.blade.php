@@ -2,7 +2,18 @@
 
 @section('content')
 
-{!! Form::open() !!}
+<!-- バリエーションメッセージ -->
+@if ($errors->any())
+<div class="register_error">
+    <ul>
+        @foreach ($errors as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
+{!! Form::open(['url' => '/register']) !!}
 
 <h2>新規ユーザー登録</h2>
 
@@ -16,7 +27,7 @@
 {{ Form::text('password',null,['class' => 'input']) }}
 
 {{ Form::label('パスワード確認') }}
-{{ Form::text('password-confirm',null,['class' => 'input']) }}
+{{ Form::text('passward_confirmed',null,['class' => 'input']) }}
 
 {{ Form::submit('登録') }}
 

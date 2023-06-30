@@ -2,9 +2,6 @@
 
 @section('content')
 
-
-
-
         <!--投稿フォーム-->
 <div class="container">
         {!! Form::open(['url' => 'post/create']) !!}
@@ -19,29 +16,29 @@
       <div class="post-content">
         <div>
           <div class="post-name">{{Auth::user()->username}}</div>
-          <div>2022-12-22</div>
+          <div>{{Auth::user()->created_at}}</div>
         </div>
-        <div>投稿内容<br>投稿内容</div>
+        <div>{{Auth::user()->user_id}}<br>{{Auth::user()->id}}</div>
       </div>
     </li>  
     <li class="post-block">
       <figure><img src="https://placehold.jp/50x50.png" alt="Bさん"></figure>
       <div class="post-content">
         <div>
-          <div class="post-name">Bさん</div>
+          <div class="post-name">{{Auth::user()->username}}</div>
           <div>2022-12-22</div>
         </div>
-        <div>投稿内容<br>投稿内容</div>
+        <div>{{Auth::user()->user_id}}<br>投稿内容</div>
       </div>
     </li>  
     <li class="post-block">
       <figure><img src="https://placehold.jp/50x50.png" alt="Cさん"></figure>
       <div class="post-content">
         <div>
-          <div class="post-name">Cさん</div>
+          <div class="post-name">{{Auth::user()->username}}</div>
           <div>2022-12-22</div>
         </div>
-        <div>投稿内容<br>投稿内容</div>
+        <div>{{Auth::user()->user_id}}<br>投稿内容</div>
       </div>
     </li>  
   </ul>
@@ -50,6 +47,7 @@
 
 
     @foreach ($posts as $post)
+    @if( ( $post->user_id ) === ( Auth::user()->id ) )
        <tr>
            <td>{{ $post->id }}</td>
            <td>{{ $post->post }}</td>
@@ -58,6 +56,7 @@
         <td><a class="js-modal-open" href="" post="{{ $post->post }}" post_id="{{ $post->id }}">更新</a></td> 
            <td><a class="btn btn-danger" href="/post/{{$post->id}}/delete" onclick="return confirm('こちらの投稿を削除してもよろしいでしょうか？')">削除</a></td> 
        </tr>
+       @endif
        @endforeach
        
        <!-- モーダルの中身 -->

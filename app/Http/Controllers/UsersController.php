@@ -26,12 +26,31 @@ class UsersController extends Controller
         return view('users.profile');
     }
 
+    public function profiledit(Request $request)
+    {
+      $id = $request->input('id');
+      $usesrname = $request->input('name');
+      $mail = $request->input('mail');
+      $password = $request->input('password');
+      $bio = $request->input('bio');
+      $icon = $request->input('icon');
+
+      $update = [
+        'username' => 'join',
+        'mail' => 'join@icloud',
+        'password' => 'bcrypt',
+        'bio' => '勉強中',
+        'images' => 'icon',
+      ];
+      //2つ目の処理
+      User::where('id',$id)->update([$update]);
+      return redirect('/top');
+    }
+
     //検索結果を表示させる
-    public function search(){
-      
-        // ユーザー一覧をページネートで取得
-        $users = User::paginate(20);
-      
+    public function search(Request $Request){
+        $users = User::get(); //Bookモデル（booksテーブル）からレコード情報を取得
+       
       // ビューにusersとsearchを変数として渡す
       return view('users.search')
           ->with([
@@ -39,23 +58,21 @@ class UsersController extends Controller
           ]);
     }
       //ユーザー検索の処理を実装する
-    public function getIndex(Request $rq)
+    public function getIndex(Request $Request)
     {
+        $users = User::get(); //Bookモデル（booksテーブル）からレコード情報を取得
         //キーワード受け取り
-        $keyword = $rq->input('search');
-    
-        //クエリ生成
-        $query = \App\Student::query();
-    
+
+        $searchWard = $request->input('searchWord');
+        
         //もしキーワードがあったら
-        if(!empty($search))
+        if($request->isMethod('post'))
         {
-            $query->orWhere('name','like','%'.$search.'%');
+          return view('uesres.search',
+          ['searchWord'=>$searchWard]);
+        }else{
+          return view('uesres.search',['users',$users]);
         }
-    
-        // 全件取得 +ページネーション
-        $students = $query->orderBy('id','desc')->paginate(5);
-        return view('student.list')->with('students',$students)->with('search',$search);
     }
     
     /**
