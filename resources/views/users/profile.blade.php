@@ -25,7 +25,7 @@
     </div><br>
     <div class="form-group mb-3">
       bio
-      <textarea name="bio" rows="2"></textarea>
+      <textarea value="{{Auth::user()->bio}}" name="bio"></textarea>
     </div><br>
     <div class="form-group mb-3">
       icon image

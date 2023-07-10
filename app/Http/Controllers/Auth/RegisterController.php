@@ -91,24 +91,23 @@ class RegisterController extends Controller
             ]);
 
             $data = $request->input();
-            $rules = [
-                'username' => 'required|string|min:2|max:12',
-                'mail' => 'required|string|email|min:5|max:40|unique:uses',
-                'passward' => 'required|string|min:8|max:20|alpha_num|confirmed',
-                'passward_confirmation'=>'required|string|min:8|max:20|alpha_num',
-            ];
+            // $rules = [
+            //     'username' => 'required|string|min:2|max:12',
+            //     'mail' => 'required|string|email|min:5|max:40|unique:users',
+            //     'passward' => 'required|string|min:8|max:20|alpha_num|confirmed',
+            //     'passward_confirmation'=>'required|string|min:8|max:20|alpha_num',
+            // ];
 
 
-            $validator=validator::make($data,$rules);
-            if($validator->fails()){
-                return redirect('/register')
-                ->withErrors($validator)
-                ->withInput();
-            }
+            // $validator=validator::make($data,$rules);
+            // if($validator->fails()){
+            //     return redirect('/register')
+            //     ->withErrors($validator)
+            //     ->withInput();
+            // }
 
-            $this->validate($request,$rules);
-            $this->create($data);
-            $user = $request->session()->get('username');
+            // $this->validate($request,$rules);
+            $user = $request->session()->get('username',$username);
             return redirect('added')->with('username',$user);
         }
         return view('auth.register');

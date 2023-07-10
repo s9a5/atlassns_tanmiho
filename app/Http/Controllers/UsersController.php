@@ -26,6 +26,7 @@ class UsersController extends Controller
         return view('users.profile');
     }
 
+    // プロフィール編集項目の入力フォームを設置する
     public function profiledit(Request $request)
     {
       $id = $request->input('id');
@@ -42,6 +43,8 @@ class UsersController extends Controller
         'bio' => '勉強中',
         'images' => 'icon',
       ];
+      dd($update);
+      
       //2つ目の処理
       User::where('id',$id)->update([$update]);
       return redirect('/top');
@@ -89,4 +92,3 @@ class UsersController extends Controller
   }
 }
 
-// プロフィール編集項目の入力フォームを設置する

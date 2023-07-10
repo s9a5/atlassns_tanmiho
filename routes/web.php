@@ -51,7 +51,7 @@ Route::get('/top', 'PostsController@index');
 Route::get('/profile', 'UsersController@profile');
 
 //プロフィールを更新させる
-Route::post('/update', 'UsersController@update')->name('profile.update');
+Route::post('/', 'UsersController@update')->name('profile.update');
 
 //検索画面を表示させる
 Route::get('/search', 'UsersController@search');
