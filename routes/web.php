@@ -51,7 +51,8 @@ Route::get('/top', 'PostsController@index');
 Route::get('/profile', 'UsersController@profile');
 
 //プロフィールを更新させる
-Route::post('/', 'UsersController@updated')->name('profile.updated');
+Route::post('/profile', 'UsersController@profiledit')->name('profile.update');
+
 
 //検索画面を表示させる
 Route::get('/search', 'UsersController@search');
@@ -86,3 +87,6 @@ Route::get('/post/{id}/delete', 'PostsController@delete');
 
 // //テストコード
 // Route::get('hello', 'PostsController@hello');
+
+//アクセスに制限をかける
+Route::middleware(['AdminMiddleware']);

@@ -37,13 +37,13 @@ class UsersController extends Controller
       $icon = $request->input('icon');
 
       $update = [
-        'username' => 'join',
+        'usesrname' => 'join',
         'mail' => 'join@icloud',
         'password' => 'bcrypt',
         'bio' => '勉強中',
         'images' => 'icon',
       ];
-      dd($update);
+      // dd($update);
       
       //2つ目の処理
       User::where('id',$id)->update([$update]);

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 
+
 class RegisterController extends Controller
 {
     /*
@@ -115,5 +116,17 @@ class RegisterController extends Controller
 
     public function added(Request $request){
         return view('auth.added');
+    }
+
+    public function handle(Request $request, Closure $next)
+    {        
+        $user = Auth::user();
+        foreach($user->roles as $role){
+            if($role->name=='admin'){
+                return $next($request);
+            }else{
+                abort(404);
+            }
+        }
     }
 }
