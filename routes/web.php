@@ -45,27 +45,30 @@ Route::get('/added', 'Auth\RegisterController@added');
 
 //ログイン中のページ
 //投稿画面（トップ）を表示させる
-Route::get('/top', 'PostsController@index');
+Route::get('/top', 'PostsController@index')->middleware(`auth`);
 
 //プロフィール画面を表示させる
-Route::get('/profile', 'UsersController@profile');
+Route::get('/profile', 'UsersController@profile')->middleware(`auth`);
 
 //プロフィールを更新させる
 Route::post('/profile', 'UsersController@profiledit')->name('profile.update');
 
 
 //検索画面を表示させる
-Route::get('/search', 'UsersController@search');
+Route::get('/search', 'UsersController@search')->middleware(`auth`);
 
 //ユーザー一覧と検索画面
 Route::get('/','UsersController@search')->name('users.search');
 
 // Route::get('/users/show', 'UsersController@users.show');
 
+
+//アクセスに制限をかける ミドルウェア
 //フォローリスト画面を表示させる
-Route::get('/follow-list', 'FollowsController@followList');
+Route::get('/follow-list', 'FollowsController@followList')->middleware(`auth`);
+
 //フォロワーリスト画面を表示させる
-Route::get('/follower-list', 'FollowsController@followerList');
+Route::get('/follower-list', 'FollowsController@followerList')->middleware(`auth`);
 
 //つぶやきの登録を処理する
 Route::post('/post/create', 'PostsController@create');
@@ -87,6 +90,3 @@ Route::get('/post/{id}/delete', 'PostsController@delete');
 
 // //テストコード
 // Route::get('hello', 'PostsController@hello');
-
-//アクセスに制限をかける
-Route::middleware(['AdminMiddleware']);

@@ -30,7 +30,7 @@ class UsersController extends Controller
     public function profiledit(Request $request)
     {
       $id = $request->input('id');
-      $usesrname = $request->input('name');
+      $name = $request->input('usesrname');
       $mail = $request->input('mail');
       $password = $request->input('password');
       $bio = $request->input('bio');
@@ -46,7 +46,6 @@ class UsersController extends Controller
       // dd($update);
       
       //2つ目の処理
-      User::where('id',$id)->update([$update]);
       return redirect('/top');
     }
 
