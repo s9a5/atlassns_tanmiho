@@ -24,5 +24,6 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('you2456'),
             'images' => '元気です',
         ]);
+        
     }
 }
