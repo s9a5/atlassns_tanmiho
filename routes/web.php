@@ -70,6 +70,12 @@ Route::get('/follow-list', 'FollowsController@followList')->middleware(`auth`);
 //フォロワーリスト画面を表示させる
 Route::get('/follower-list', 'FollowsController@followerList')->middleware(`auth`);
 
+//フォロー解除
+Route::post('/unfollow','FollowsController@unfollow')->name('Follows.unfollow');
+
+//フォローする
+Route::post('/follow','FollowsController@follow')->name('follows.follow');
+
 //つぶやきの登録を処理する
 Route::post('/post/create', 'PostsController@create');
 
